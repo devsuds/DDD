@@ -48,10 +48,10 @@ export function Timer() {
 
   const getTimerStyle = () => {
     const baseStyle = {
-      fontSize: '24px',
+      fontSize: 'clamp(18px, 5vw, 24px)',
       fontWeight: 'bold',
       fontFamily: 'monospace',
-      minWidth: '120px',
+      minWidth: 'clamp(100px, 20vw, 120px)',
       color: getTimerColor(),
       transition: 'color 0.3s ease'
     };
@@ -99,33 +99,31 @@ export function Timer() {
 
   return (
     <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      padding: '16px',
+      width: '100%',
+      padding: 'clamp(8px, 2vh, 16px)',
       backgroundColor: '#f5f5f5',
       borderBottom: '1px solid #ddd',
       display: 'flex',
       alignItems: 'center',
-      gap: '20px',
-      zIndex: 1000
+      gap: 'clamp(10px, 4vw, 20px)',
+      justifyContent: 'space-between',
+      flexWrap: 'wrap'
     }}>
 
       {/* Max Time Input */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '30px', marginLeft: '20px' }}>
+      <div style={{ marginRight: 'clamp(10px, 4vw, 30px)', display: 'flex', alignItems: 'center', gap: 'clamp(4px, 1vw, 8px)' }}>
         <button 
           onClick={decreaseMaxTime}
           style={{ 
-            padding: '4px 8px', 
+            padding: 'clamp(4px, 1vh, 8px) clamp(6px, 2vw, 12px)', 
             cursor: 'pointer',
             backgroundColor: '#e40f0f',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
             fontWeight: 'bold',
-            fontSize: '16px',
-            minWidth: '30px'
+            fontSize: 'clamp(14px, 3vw, 16px)',
+            minWidth: 'clamp(25px, 5vw, 30px)'
           }}
         >
           -
@@ -135,12 +133,12 @@ export function Timer() {
           value={maxTime}
           onChange={(e) => handleMaxTimeChange(e.target.value)}
           style={{
-            width: '60px',
-            padding: '4px 8px',
+            width: 'clamp(50px, 10vw, 60px)',
+            padding: 'clamp(4px, 1vh, 8px) clamp(6px, 2vw, 12px)',
             textAlign: 'center',
             border: '1px solid #ddd',
             borderRadius: '4px',
-            fontSize: '14px',
+            fontSize: 'clamp(12px, 3vw, 14px)',
             fontWeight: 'bold'
           }}
           min="10"
@@ -149,59 +147,61 @@ export function Timer() {
         <button 
           onClick={increaseMaxTime}
           style={{ 
-            padding: '4px 8px', 
+            padding: 'clamp(4px, 1vh, 8px) clamp(6px, 2vw, 12px)', 
             cursor: 'pointer',
             backgroundColor: '#324ff5',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
             fontWeight: 'bold',
-            fontSize: '16px',
-            minWidth: '30px'
+            fontSize: 'clamp(14px, 3vw, 16px)',
+            minWidth: 'clamp(25px, 5vw, 30px)'
           }}
         >
           +
         </button>
       </div>
-
-      <div style={getTimerStyle()}>
-        {formatTime(seconds)}
+        <div style={getTimerStyle()}>
+          {formatTime(seconds)}
+        </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(8px, 2vw, 12px)', flexShrink: 0 }}>
+        <button onClick={handleStart} style={{ 
+          padding: 'clamp(6px, 1.5vh, 8px) clamp(12px, 3vw, 16px)', 
+          cursor: 'pointer',
+          backgroundColor: '#324ff5',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          fontWeight: 'bold',
+          fontSize: 'clamp(14px, 3vw, 16px)'
+        }}>
+          Start
+        </button>
+        <button onClick={handleStop} style={{ 
+          padding: 'clamp(6px, 1.5vh, 8px) clamp(12px, 3vw, 16px)', 
+          cursor: 'pointer',
+          backgroundColor: '#e40f0f',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          fontWeight: 'bold',
+          fontSize: 'clamp(14px, 3vw, 16px)'
+        }}>
+          Stop
+        </button>
+        <button onClick={handleReset} style={{ 
+          padding: 'clamp(6px, 1.5vh, 8px) clamp(12px, 3vw, 16px)', 
+          cursor: 'pointer',
+          backgroundColor: '#818585',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          fontWeight: 'bold',
+          fontSize: 'clamp(14px, 3vw, 16px)'
+        }}>
+          Reset
+        </button>
       </div>
-      
-
-      <button onClick={handleStart} style={{ 
-        padding: '8px 16px', 
-        cursor: 'pointer',
-        backgroundColor: '#324ff5',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px',
-        fontWeight: 'bold'
-      }}>
-        Start
-      </button>
-      <button onClick={handleStop} style={{ 
-        padding: '8px 16px', 
-        cursor: 'pointer',
-        backgroundColor: '#e40f0f',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px',
-        fontWeight: 'bold'
-      }}>
-        Stop
-      </button>
-      <button onClick={handleReset} style={{ 
-        padding: '8px 16px', 
-        cursor: 'pointer',
-        backgroundColor: '#818585',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px',
-        fontWeight: 'bold'
-      }}>
-        Reset
-      </button>
     </div>
   );
 }

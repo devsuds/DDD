@@ -6,9 +6,9 @@ import './App.css';
 
 export default function App() {
   return (
-    <div style={{ position: 'fixed', inset: 0 }}>
+    <div style={{ position: 'fixed', inset: 0, display: 'flex', flexDirection: 'column' }}>
       <Timer />
-      <div style={{ position: 'absolute', top: '80px', left: 0, right: 0, bottom: 0 }}>
+      <div style={{ flex: 1, width: '100%', height: '100%' }}>
         <Tldraw autoFocus={false}>
           <MainBoard />
         </Tldraw>
